@@ -25,3 +25,26 @@ let raceE1 = document.getElementById('race-select')
 
 }
 populateRaces()
+
+function populateClasses() {
+
+    fetch(classes)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function(data) {
+            console.log(data)
+            for (let i = 0; i < data.results.length; i++) {
+                let classOption = document.createElement('option')
+                classOption.classList = 'dropdown-option'
+                classOption.value = data.results[i].index
+                console.log(classOption.value)
+                classOption.innerHTML = data.results[i].name
+                classEl.appendChild(classOption)
+            }
+        })
+
+
+}
+
+populateClasses()
