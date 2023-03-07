@@ -2,11 +2,12 @@ let classes = 'https://www.dnd5eapi.co/api/classes'
 let races = 'https://www.dnd5eapi.co/api/races'
 let abilityScores = 'https://www.dnd5eapi.co/api/ability-scores'
 let raceEl = document.getElementById('race-select')
+let classEl = document.getElementById('class-select')
 
 // Populate Classes to Dropdown Menu
 function populateRaces() {
 
-    fetch(classes)
+    fetch(races)
         .then(function (response) {
             return response.json()
         })
