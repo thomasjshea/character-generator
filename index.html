@@ -40,11 +40,12 @@
         </div>
 
           <footer class="has-text-centered"> <!-- Area for Local Storage Component -->
-            <button class="button is-warning is-medium is-outlined">Save Your Character</button>
-            <button class="button is-warning is-medium is-outlined">Load Your Character</button>
+            <button onclick="saveCharacter()" class="button is-warning is-medium is-outlined">Save Your Character</button>
+            <button onclick="retrieveSavedCharacter()" class="button is-warning is-medium is-outlined">Load Your Character</button>
+            <ol id="character-list"></ol>
           </footer>
       
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="script.js" > </script>
+      <script src="./assets/js/script.js" > </script>
   </body>
 </html>
