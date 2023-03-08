@@ -4,6 +4,7 @@ let abilityScores = 'https://www.dnd5eapi.co/api/ability-scores'
 let raceEl = document.getElementById('race-select')
 let classEl = document.getElementById('class-select')
 
+
 // Populate Classes to Dropdown Menu
 function populateRaces() {
 
