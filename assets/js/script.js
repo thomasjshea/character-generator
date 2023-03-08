@@ -1,11 +1,16 @@
+// Declare variables
 let classes = 'https://www.dnd5eapi.co/api/classes'
 let races = 'https://www.dnd5eapi.co/api/races'
 let abilityScores = 'https://www.dnd5eapi.co/api/ability-scores'
 let raceEl = document.getElementById('race-select')
 let classEl = document.getElementById('class-select')
+let generateBtnEl = $('#generate-btn')
+let randomizeBtnEl = $('#randomize-btn')
+let outputEl = document.getElementById('output')
+let possibleScores = [15, 14, 13, 12, 10, 8]
 
 
-// Populate Classes to Dropdown Menu
+// Populate Races to Dropdown Menu
 function populateRaces() {
 
     fetch(races)
@@ -28,6 +33,7 @@ let raceE1 = document.getElementById('race-select')
 }
 populateRaces()
 
+// Populate Classes to dropdown Menu
 function populateClasses() {
 
     fetch(classes)
@@ -49,4 +55,23 @@ function populateClasses() {
 
 }
 
+
 populateClasses()
+
+// add event listener to generate button
+generateBtnEl.click(function(){
+    fetch(abilityScores)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function (data){
+            console.log(data)
+            for (let i=0; i<data.results.length; i++){
+                let ability = document.createElement('p')
+                ability.innerHTML = data.results[i].name
+                outputEl.appendChild(ability)
+            }
+        })
+
+})
+
