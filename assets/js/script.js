@@ -1,5 +1,6 @@
-// array including object of character features for saved characters 
-characterFeatures = [{
+const character = document.getElementById("character");
+// array of objects containing features of saved characters
+characterArr = [{
     name:'',
     class:'',
     race:'',
@@ -15,6 +16,7 @@ saveCharacter();
 
 // loads saved character and their features for user
 function retrieveSavedCharacter() {
+  // localStorage.getItem('character')
   console.log("retrieveSavedCharacter");
 
   for (i = 0; i < characterArr.length; i++) {
