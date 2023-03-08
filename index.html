@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <html class="has-background-black-ter">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>D&D 5e Character Generator</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
 
-  <body>
-    <div class="content container has-text-centered"> 
-      <h1 class="title is-2 has-text-warning">D&D 5e Character Generator</h1> 
-      <h2 class="subtitle">Subheader</h2>
-      
-      <div class="tile is-ancestor"> <!-- area for input options and where generated character appears-->
-        <div class="tile is-parent is-8">
-          <article class="tile is-child box has-background-info">
-            <p class="title w">Title</p>
-            <p class="subtitle w">Subtitle</p> 
-            <p>x</p> 
-            <p>x</p>
-            <p>x</p>
-            <p>x</p>
-            <p>x</p>
-          </article>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D&D 5e Character Generator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <div class="content container has-text-centered">
+    <h1 class="title is-2 has-text-warning">D&D 5e Character Generator</h1>
+    <h2 class="subtitle">Subheader</h2>
+
+    <div class="tile is-ancestor"> <!-- area for input options and where generated character appears-->
+      <div class="tile is-parent is-8">
+        <article class="tile is-child box has-background-info">
+          <button class="button" id="randomize-btn">Randomize</button>
+          <p class="title w">Please Select a Race and Class</p>
+          
+
+          <label for="class-select">Select a Class</label>
+          <select name="class" id="class-select" class="dropdown">
+            <option class="dropdown-option" value="">--Select a Class--</option>
+            <!--<option class="dropdown-option" value="barbarian">Barbarian</option>
+            <option class="dropdown-option" value="bard">Bard</option>
+            <option class="dropdown-option" value="cleric">Cleric</option>
+            <option class="dropdown-option" value="druid">Druid</option>
+            <option class="dropdown-option" value="fighter">Fighter</option>
+            <option class="dropdown-option" value="monk">Monk</option>
+            <option class="dropdown-option" value="paladin">Paladin</option>
+            <option class="dropdown-option" value="ranger">Ranger</option>
+            <option class="dropdown-option" value="rogue">Rogue</option>
+            <option class="dropdown-option" value="sorcerer">Sorcerer</option>
+            <option class="dropdown-option" value="warlock">Warlock</option>
+            <option class="dropdown-option" value="wizard">Wizard</option>-->
+          </select>
+
+          <label for="race-select">Select a Race</label>
+          <select name="race" id="race-select" class="dropdown">
+           <option class="dropdown-option" value="">--Select a Race--</option>
+             <!--<option class="dropdown-option" value="dragonborne">Dragonborne</option>
+            <option class="dropdown-option" value="dwarf">Dwarf</option>
+            <option class="dropdown-option" value="elf">Elf</option>
+            <option class="dropdown-option" value="gnome">Gnome</option>
+            <option class="dropdown-option" value="half-elf">Half-Elf</option>
+            <option class="dropdown-option" value="halfling">Halfling</option>
+            <option class="dropdown-option" value="half-orc">Half-Orc</option>
+            <option class="dropdown-option" value="tiefling">Tiefling</option>-->
+          </select>
+          <button class="button" id="generate-btn">Generate</button>    
+        </article>
+        <div id="output">
+
         </div>
+      </div>
 
         <div class="tile is-parent is-4"> <!-- Area for Avatar Display and small preview of generated character-->
             <article class="tile is-child box has-background-danger">
@@ -37,13 +68,12 @@
               <p>x</p>
             </article>
           </div>
-        </div>
 
-          <footer class="has-text-centered"> <!-- Area for Local Storage Component -->
-            <button onclick="saveCharacter()" class="button is-warning is-medium is-outlined">Save Your Character</button>
-            <button onclick="retrieveSavedCharacter()" class="button is-warning is-medium is-outlined">Load Your Character</button>
-            <ol id="character-list"></ol>
-          </footer>
+        <footer class="has-text-centered"> <!-- Area for Local Storage Component -->
+          <button onclick="handleSaveClick()" class="button is-warning is-medium is-outlined">Save Your Character</button>
+          <button onclick="retrieveSavedCharacter()" class="button is-warning is-medium is-outlined">Load Your Character</button>
+          <button onclick="clearAll()" class="button is-warning is-medium is-outlined">Clear All</button>
+        <ol id="character-list"></ol>
       
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="./assets/js/script.js" > </script>
