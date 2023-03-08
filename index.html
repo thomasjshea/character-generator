@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>D&D 5e Character Generator</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
     <h1 class="title is-2 has-text-warning">D&D 5e Character Generator</h1>
     <h2 class="subtitle">Subheader</h2>
 
-    <div class="tile is-ancestor">
+    <div class="tile is-ancestor"> <!-- area for input options and where generated character appears-->
       <div class="tile is-parent is-8">
         <article class="tile is-child box has-background-info">
           <button class="button" id="randomize-btn">Randomize</button>
@@ -53,11 +53,11 @@
           <button class="button" id="generate-btn">Generate</button>    
         </article>
         <div id="output">
-          
+
         </div>
       </div>
 
-        <div class="tile is-parent is-4">
+        <div class="tile is-parent is-4"> <!-- Area for Avatar Display and small preview of generated character-->
             <article class="tile is-child box has-background-danger">
               <p class="title w">Title</p>
               <p class="subtitle w">Subtitle</p> 
@@ -68,6 +68,11 @@
               <p>x</p>
             </article>
           </div>
+
+          <footer class="has-text-centered"> <!-- Area for Local Storage Component -->
+            <button class="button is-warning is-medium is-outlined">Save Your Character</button>
+            <button class="button is-warning is-medium is-outlined">Load Your Character</button>
+          </footer>
 
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="/assets/js/script.js"> </script>
