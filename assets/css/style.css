@@ -1,0 +1,24 @@
+* {
+    color: white;
+}
+
+.r {
+    color: red;
+    text-decoration: line-through;
+}
+
+.g {
+    color: #83f28f;
+}
+
+.w {
+    color: white;
+}
+
+.dropdown {
+    color:black;
+}
+
+.dropdown-option {
+    color:black
+}
