@@ -24,7 +24,7 @@ function populateRaces() {
         .then(function (response) {
             return response.json()
         })
-        .then(function(data) {
+        .then(function (data) {
             console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let raceOption = document.createElement('option')
@@ -35,7 +35,7 @@ function populateRaces() {
                 raceEl.appendChild(raceOption)
             }
         })
-let raceE1 = document.getElementById('race-select')
+    let raceE1 = document.getElementById('race-select')
 
 }
 populateRaces()
@@ -47,7 +47,7 @@ function populateClasses() {
         .then(function (response) {
             return response.json()
         })
-        .then(function(data) {
+        .then(function (data) {
             console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let classOption = document.createElement('option')
@@ -66,14 +66,14 @@ function populateClasses() {
 populateClasses()
 
 // add event listener to generate button
-generateBtnEl.click(function(){
+generateBtnEl.click(function () {
     fetch(abilityScores)
-        .then(function(response){
+        .then(function (response) {
             return response.json()
         })
-        .then(function (data){
+        .then(function (data) {
             console.log(data)
-            for (let i=0; i<data.results.length; i++){
+            for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
@@ -85,7 +85,7 @@ generateBtnEl.click(function(){
                 var fourDSix = fourDSixRoll.reduce(
                     (accumulator, currentValue) => accumulator + currentValue,
                     initialValue
-                    );
+                );
                 console.log(fourDSix)
                 let score = document.createElement("span")
                 score.innerHTML = fourDSix
@@ -93,34 +93,59 @@ generateBtnEl.click(function(){
             }
         })
 
-randomizeBtnEl.click(function(){
+})
+
+// Added event listener to randomize button
+randomizeBtnEl.click(function () {
     fetch(abilityScores)
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data)
-    })
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log(data)
+            for (let i = 0; i < data.results.length; i++) {
+                let ability = document.createElement('p')
+                ability.innerHTML = data.results[i].name
+                outputEl.appendChild(ability)
+                const initialValue = 0
+                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
+                console.log(fourDSixRoll)
+                var fourDSixRemove = (fourDSixRoll.sort()).shift()
+                console.log(fourDSixRoll)
+                var fourDSix = fourDSixRoll.reduce(
+                    (accumulator, currentValue) => accumulator + currentValue,
+                    initialValue
+                );
+                console.log(fourDSix)
+                let score = document.createElement("span")
+                score.innerHTML = fourDSix
+                ability.appendChild(score)
+            }
+        })
+    // Fetch classes to assign a random class to the generated character
     fetch(classes)
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data)
-        let randomClass = Math.floor(Math.random() * data.results.length)
-        let selectedClass = data.results[randomClass].name
-        console.log(selectedClass)
-    })
+        .then(function (response) {
+            return response.json()
+        })
+        // Select a random class from the dataset
+        .then(function (data) {
+            console.log(data)
+            let randomClass = Math.floor(Math.random() * data.results.length)
+            let selectedClass = data.results[randomClass].name
+            console.log(selectedClass)
+        })
+    // Fetch races to assign a random race to the generated character
     fetch(races)
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data)
-        let randomRace = Math.floor(Math.random() * data.results.length)
-        let selectedRace = data.results[randomRace].name
-        console.log(selectedRace)
-    })
+        .then(function (response) {
+            return response.json()
+        })
+        // Select a random race from the dataset
+        .then(function (data) {
+            console.log(data)
+            let randomRace = Math.floor(Math.random() * data.results.length)
+            let selectedRace = data.results[randomRace].name
+            console.log(selectedRace)
+        })
 })
 
 
@@ -130,23 +155,23 @@ let characterList = document.getElementById("character-list");
 // saves users generated character and adds to local storage
 function handleSaveClick() {
     console.log("saveCharacter");
-  const characterArr = getCharacters()
-  if (characterArr.length>4) {
-    characterArr.shift()
-  }
-  console.log(characterArr)
-  let characterClass = document.getElementById("class-select");
-  let classValue = characterClass.value;
-  let characterRace = document.getElementById("race-select");
-  let raceValue = characterRace.value;
-  console.log(classValue)
-  console.log(raceValue)
-  const newCharacter = {
-    race: raceValue,
-    class: classValue
-  }
-  characterArr.push(newCharacter);
-  localStorage.setItem("character", JSON.stringify(characterArr));
+    const characterArr = getCharacters()
+    if (characterArr.length > 4) {
+        characterArr.shift()
+    }
+    console.log(characterArr)
+    let characterClass = document.getElementById("class-select");
+    let classValue = characterClass.value;
+    let characterRace = document.getElementById("race-select");
+    let raceValue = characterRace.value;
+    console.log(classValue)
+    console.log(raceValue)
+    const newCharacter = {
+        race: raceValue,
+        class: classValue
+    }
+    characterArr.push(newCharacter);
+    localStorage.setItem("character", JSON.stringify(characterArr));
 }
 
 // gets characters from local storage
@@ -164,21 +189,21 @@ function clearAll() {
 
 // clears loaded character list
 function clearItems() {
-    characterList.innerHTML='';
+    characterList.innerHTML = '';
 }
 
 // loads saved character and their features for user
 function retrieveSavedCharacter() {
     clearItems()
     const characterArr = getCharacters()
-  console.log(characterArr);
-  console.log("retrieveSavedCharacter");
-  for (i = 0; i < characterArr.length; i++) {
-    let savedCharacter = document.createElement("li");
-    const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race}`
-    savedCharacter.innerText = (characterText);
-    characterList.appendChild(savedCharacter);
-  }
+    console.log(characterArr);
+    console.log("retrieveSavedCharacter");
+    for (i = 0; i < characterArr.length; i++) {
+        let savedCharacter = document.createElement("li");
+        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race}`
+        savedCharacter.innerText = (characterText);
+        characterList.appendChild(savedCharacter);
+    }
 }
-)}
+
 
