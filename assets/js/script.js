@@ -75,6 +75,7 @@ generateBtnEl.click(function () {
             console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
+                ability.setAttribute("id","ability")
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
@@ -163,11 +164,15 @@ function handleSaveClick() {
     let classValue = characterClass.value;
     let characterRace = document.getElementById("race-select");
     let raceValue = characterRace.value;
+    let characterAbilities = document.getElementById("ability");
+    let abilityValue = characterAbilities.value
+    console.log(abilityValue)
     console.log(classValue)
     console.log(raceValue)
     const newCharacter = {
         race: raceValue,
-        class: classValue
+        class: classValue,
+        ability: abilityValue
     }
     console.log(newCharacter)
     characterArr.push(newCharacter);
@@ -200,7 +205,7 @@ function retrieveSavedCharacter() {
     console.log("retrieveSavedCharacter");
     for (i = 0; i < characterArr.length; i++) {
         let savedCharacter = document.createElement("li");
-        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race}`
+        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race} + ',' ${characterArr[i].ability}`
         savedCharacter.innerText = (characterText);
         characterList.appendChild(savedCharacter);
     }
