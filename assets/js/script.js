@@ -182,7 +182,7 @@ function handleSaveClick() {
         let abilityStats = characterAbilities[i];
         let abilityValue = abilityStats.innerText
         console.log(abilityValue)
-        abilitiesResult += abilityValue
+        abilitiesResult += abilityValue + " "
     }
     console.log(classValue)
     console.log(raceValue)
