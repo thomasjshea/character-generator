@@ -129,9 +129,13 @@ randomizeBtnEl.click(function () {
         let randomClass = Math.floor(Math.random() * classEl.children.length)
         let selectedClass = classEl.children[randomClass].value
         let randClass = document.getElementById("class-select")
+        randClass.value = selectedClass
         console.log(selectedClass)
         let randomRace = Math.floor(Math.random() * raceEl.children.length)
         let selectedRace = raceEl.children[randomRace].value
+        let randRace = document.getElementById("race-select")
+        randRace.value = selectedRace
+        
         console.log(selectedRace)
     // Fetch classes to assign a random class to the generated character
     // fetch(charClasses)
