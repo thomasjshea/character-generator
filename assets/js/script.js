@@ -123,6 +123,62 @@ randomizeBtnEl.click(function(){
     })
 })
 
-       
+
+
+let characterList = document.getElementById("character-list");
+
+// saves users generated character and adds to local storage
+function handleSaveClick() {
+    console.log("saveCharacter");
+  const characterArr = getCharacters()
+  if (characterArr.length>4) {
+    characterArr.shift()
+  }
+  console.log(characterArr)
+  let characterClass = document.getElementById("class-select");
+  let classValue = characterClass.value;
+  let characterRace = document.getElementById("race-select");
+  let raceValue = characterRace.value;
+  console.log(classValue)
+  console.log(raceValue)
+  const newCharacter = {
+    race: raceValue,
+    class: classValue
+  }
+  characterArr.push(newCharacter);
+  localStorage.setItem("character", JSON.stringify(characterArr));
+}
+
+// gets characters from local storage
+function getCharacters() {
+    const characterStorage = localStorage.getItem("character");
+    const characterArr = JSON.parse(characterStorage);
+    return characterArr || []
+}
+
+// clears saved characters from local storage
+function clearAll() {
+    localStorage.clear()
+    clearItems()
+}
+
+// clears loaded character list
+function clearItems() {
+    characterList.innerHTML='';
+}
+
+// loads saved character and their features for user
+function retrieveSavedCharacter() {
+    clearItems()
+    const characterArr = getCharacters()
+  console.log(characterArr);
+  console.log("retrieveSavedCharacter");
+  for (i = 0; i < characterArr.length; i++) {
+    let savedCharacter = document.createElement("li");
+    const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race}`
+    savedCharacter.innerText = (characterText);
+    characterList.appendChild(savedCharacter);
+  }
+}
 
 
