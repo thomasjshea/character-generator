@@ -1,5 +1,5 @@
 // Declare variables
-let classes = 'https://www.dnd5eapi.co/api/classes'
+let charClasses = 'https://www.dnd5eapi.co/api/classes'
 let races = 'https://www.dnd5eapi.co/api/races'
 let abilityScores = 'https://www.dnd5eapi.co/api/ability-scores'
 let raceEl = document.getElementById('race-select')
@@ -43,7 +43,7 @@ populateRaces()
 // Populate Classes to dropdown Menu
 function populateClasses() {
 
-    fetch(classes)
+    fetch(charClasses)
         .then(function (response) {
             return response.json()
         })
@@ -123,7 +123,7 @@ randomizeBtnEl.click(function () {
             }
         })
     // Fetch classes to assign a random class to the generated character
-    fetch(classes)
+    fetch(charClasses)
         .then(function (response) {
             return response.json()
         })
