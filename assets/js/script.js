@@ -75,6 +75,7 @@ generateBtnEl.click(function(){
 
 })
 
+// Added event listener to randomize button
 randomizeBtnEl.click(function(){
     fetch(abilityScores)
     .then(function(response){
@@ -83,20 +84,24 @@ randomizeBtnEl.click(function(){
     .then(function(data){
         console.log(data)
     })
+    // Fetch classes to assign a random class to the generated character
     fetch(classes)
     .then(function(response){
         return response.json()
     })
+    // Select a random class from the dataset
     .then(function(data){
         console.log(data)
         let randomClass = Math.floor(Math.random() * data.results.length)
         let selectedClass = data.results[randomClass].name
         console.log(selectedClass)
     })
+    // Fetch races to assign a random race to the generated character
     fetch(races)
     .then(function(response){
         return response.json()
     })
+    // Select a random race from the dataset
     .then(function(data){
         console.log(data)
         let randomRace = Math.floor(Math.random() * data.results.length)
