@@ -8,7 +8,14 @@ let generateBtnEl = $('#generate-btn')
 let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
 let possibleScores = [15, 14, 13, 12, 10, 8]
-
+var threeDSixStr = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
+var threeDSixDex = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
+var threeDSixCon = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
+var threeDSixWis = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
+var threeDSixInt = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
+var threeDSixCha = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
+var threeDSix = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
+console.log(threeDSix)
 
 // Populate Races to Dropdown Menu
 function populateRaces() {
@@ -70,10 +77,52 @@ generateBtnEl.click(function(){
                 let ability = document.createElement('p')
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
+                const initialValue = 0
+                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
+                console.log(fourDSixRoll)
+                var fourDSixRemove = (fourDSixRoll.sort()).shift()
+                console.log(fourDSixRoll)
+                var fourDSix = fourDSixRoll.reduce(
+                    (accumulator, currentValue) => accumulator + currentValue,
+                    initialValue
+                    );
+                console.log(fourDSix)
+                let score = document.createElement("span")
+                score.innerHTML = fourDSix
+                ability.appendChild(score)
             }
         })
 
+randomizeBtnEl.click(function(){
+    fetch(abilityScores)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+    })
+    fetch(classes)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+        let randomClass = Math.floor(Math.random() * data.results.length)
+        let selectedClass = data.results[randomClass].name
+        console.log(selectedClass)
+    })
+    fetch(races)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+        let randomRace = Math.floor(Math.random() * data.results.length)
+        let selectedRace = data.results[randomRace].name
+        console.log(selectedRace)
+    })
 })
+
 
 
 let characterList = document.getElementById("character-list");
@@ -131,4 +180,5 @@ function retrieveSavedCharacter() {
     characterList.appendChild(savedCharacter);
   }
 }
+
 
