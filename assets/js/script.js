@@ -93,6 +93,36 @@ generateBtnEl.click(function(){
             }
         })
 
-
-        
+randomizeBtnEl.click(function(){
+    fetch(abilityScores)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+    })
+    fetch(classes)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+        let randomClass = Math.floor(Math.random() * data.results.length)
+        let selectedClass = data.results[randomClass].name
+        console.log(selectedClass)
+    })
+    fetch(races)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+        let randomRace = Math.floor(Math.random() * data.results.length)
+        let selectedRace = data.results[randomRace].name
+        console.log(selectedRace)
+    })
 })
+
+       
+
+
