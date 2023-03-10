@@ -75,7 +75,7 @@ generateBtnEl.click(function () {
             console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
-                ability.setAttribute("id","ability")
+                ability.setAttribute("class", "ability")
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
@@ -152,6 +152,18 @@ randomizeBtnEl.click(function () {
 
 let characterList = document.getElementById("character-list");
 
+// function getAbilities(){
+//     let abilityArray = []
+//     let abilities = document.getElementById("output")
+//     abilities.forEach(ability => {
+//         let characterAbility = parseInt(ability.innerText);
+//         abilityArray.push(characterAbility)
+//         console.log(abilityArray)
+//     })
+//     return abilityArray
+// }
+
+
 // saves users generated character and adds to local storage
 function handleSaveClick() {
     console.log("saveCharacter");
@@ -164,15 +176,20 @@ function handleSaveClick() {
     let classValue = characterClass.value;
     let characterRace = document.getElementById("race-select");
     let raceValue = characterRace.value;
-    let characterAbilities = document.getElementById("ability");
-    let abilityValue = characterAbilities.value
-    console.log(abilityValue)
+    let characterAbilities = document.getElementsByClassName("ability");
+    let abilitiesResult = ""
+    for(let i=0; i < characterAbilities.length; i++) {
+        let abilityStats = characterAbilities[i];
+        let abilityValue = abilityStats.innerText
+        console.log(abilityValue)
+        abilitiesResult += abilityValue
+    }
     console.log(classValue)
     console.log(raceValue)
     const newCharacter = {
         race: raceValue,
         class: classValue,
-        ability: abilityValue
+        ability: abilitiesResult
     }
     console.log(newCharacter)
     characterArr.push(newCharacter);
@@ -205,7 +222,7 @@ function retrieveSavedCharacter() {
     console.log("retrieveSavedCharacter");
     for (i = 0; i < characterArr.length; i++) {
         let savedCharacter = document.createElement("li");
-        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race} + ',' ${characterArr[i].ability}`
+        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race + ','} abilities: ${characterArr[i].ability}`
         savedCharacter.innerText = (characterText);
         characterList.appendChild(savedCharacter);
     }
