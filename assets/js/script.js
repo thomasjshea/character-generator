@@ -180,5 +180,5 @@ function retrieveSavedCharacter() {
     characterList.appendChild(savedCharacter);
   }
 }
-
+)}
 
