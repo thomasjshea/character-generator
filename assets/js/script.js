@@ -212,6 +212,7 @@ function clearAll() {
 // clears loaded character list
 function clearItems() {
     characterList.innerHTML = '';
+    document.getElementById("output").innerHTML = '';
 }
 
 // loads saved character and their features for user
