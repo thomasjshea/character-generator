@@ -36,6 +36,7 @@ function dTwenty() {
 }
 
 
+
 // These generate two variables for common stat generation tactics, "threeDSix" and "fourDSix". You should only use those variable names. 
 // Don't use fourDSixRoll or fourDSixRemove. They're there because I didn't write a function. Don't repeat my mistakes. 
 
