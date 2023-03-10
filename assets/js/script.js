@@ -75,6 +75,7 @@ generateBtnEl.click(function(){
 
 })
 
+
 let characterList = document.getElementById("character-list");
 
 // saves users generated character and adds to local storage
@@ -130,3 +131,4 @@ function retrieveSavedCharacter() {
     characterList.appendChild(savedCharacter);
   }
 }
+
