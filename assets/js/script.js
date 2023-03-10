@@ -8,6 +8,7 @@ let generateBtnEl = $('#generate-btn')
 let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
 let possibleScores = [15, 14, 13, 12, 10, 8]
+let possibleBackgrounds = ['Acolyte', 'Charlatan', 'Criminal', 'Entertainer', 'Folk Hero', 'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier', 'Urchin']
 var threeDSixStr = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
 var threeDSixDex = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
 var threeDSixCon = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
@@ -104,8 +105,10 @@ randomizeBtnEl.click(function () {
         })
         .then(function (data) {
             console.log(data)
+            // Randomize Stats for abilities
             for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
+                ability.setAttribute("class", "ability")
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
@@ -123,45 +126,40 @@ randomizeBtnEl.click(function () {
                 ability.appendChild(score)
             }
         })
+        let randomClass = Math.floor(Math.random() * classEl.children.length)
+        let selectedClass = classEl.children[randomClass].value
+        let randClass = document.getElementById("class-select")
+        console.log(selectedClass)
+        let randomRace = Math.floor(Math.random() * raceEl.children.length)
+        let selectedRace = raceEl.children[randomRace].value
+        console.log(selectedRace)
     // Fetch classes to assign a random class to the generated character
-    fetch(charClasses)
-        .then(function (response) {
-            return response.json()
-        })
-        // Select a random class from the dataset
-        .then(function (data) {
-            console.log(data)
-            let randomClass = Math.floor(Math.random() * data.results.length)
-            let selectedClass = data.results[randomClass].name
-            console.log(selectedClass)
-        })
-    // Fetch races to assign a random race to the generated character
-    fetch(races)
-        .then(function (response) {
-            return response.json()
-        })
-        // Select a random race from the dataset
-        .then(function (data) {
-            console.log(data)
-            let randomRace = Math.floor(Math.random() * data.results.length)
-            let selectedRace = data.results[randomRace].name
-            console.log(selectedRace)
-        })
+    // fetch(charClasses)
+    //     .then(function (response) {
+    //         return response.json()
+    //     })
+    //     // Select a random class from the dataset
+    //     .then(function (data) {
+    //         console.log(data)
+    //         let randomClass = Math.floor(Math.random() * data.results.length)
+    //         let selectedClass = data.results[randomClass].name
+    //         console.log(selectedClass)
+    //     })
+    // // Fetch races to assign a random race to the generated character
+    // fetch(races)
+    //     .then(function (response) {
+    //         return response.json()
+    //     })
+    //     // Select a random race from the dataset
+    //     .then(function (data) {
+    //         console.log(data)
+    //         let randomRace = Math.floor(Math.random() * data.results.length)
+    //         let selectedRace = data.results[randomRace].name
+    //         console.log(selectedRace)
+    //     })
 })
 
-
 let characterList = document.getElementById("character-list");
-
-// function getAbilities(){
-//     let abilityArray = []
-//     let abilities = document.getElementById("output")
-//     abilities.forEach(ability => {
-//         let characterAbility = parseInt(ability.innerText);
-//         abilityArray.push(characterAbility)
-//         console.log(abilityArray)
-//     })
-//     return abilityArray
-// }
 
 
 // saves users generated character and adds to local storage
@@ -205,6 +203,7 @@ function getCharacters() {
 
 // clears saved characters from local storage
 function clearAll() {
+    document.getElementById("output").innerHTML = '';
     localStorage.clear()
     clearItems()
 }
@@ -212,7 +211,6 @@ function clearAll() {
 // clears loaded character list
 function clearItems() {
     characterList.innerHTML = '';
-    document.getElementById("output").innerHTML = '';
 }
 
 // loads saved character and their features for user
