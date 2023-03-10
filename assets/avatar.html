@@ -20,11 +20,20 @@
           <p class="title w">Title</p>
           <p class="subtitle w">Subtitle</p> 
           <!--adds base avatar img from the api-->
-          <img id="frame" src="https://api.dicebear.com/5.x/adventurer/svg" alt= "avatar"style="width: 338px;">
-          <button  id="gen" >Generate</button>
+          <img id="frame" src="https://api.dicebear.com/5.x/adventurer/svg?base=default" alt= "avatar">
+          <!--return button-->
           <form>
             <input class="button" type="button" value="Return" onclick="history.back()">
-        </form>
+          </form>
+
+          <button class="button" id="skin" >Skin Color</button>
+          <button class="button" id="hairStyle">Hair Style</button>
+          <button class="button" id=""></button>
+          <button class="button" id=""></button>
+
+
+
+
 
   
 
@@ -33,6 +42,6 @@
     </div>
 
 
-    <script src="js/avatar.js"></script>
+    <script src="js/advanced.js"></script>
   </body>
 </html>

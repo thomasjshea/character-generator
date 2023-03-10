@@ -78,7 +78,7 @@ generateBtnEl.click(function () {
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
-                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
+                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random()) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
                 console.log(fourDSixRoll)
                 var fourDSixRemove = (fourDSixRoll.sort()).shift()
                 console.log(fourDSixRoll)
