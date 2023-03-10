@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="has-background-black-ter">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced Avatar Creator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+
+
+  <body>
+
+    <h1 class="title is-2 has-text-warning">Advanced Avatar Creator</h1>
+
+    <div class="tile is-parent is-4"> <!-- Area for Avatar Display and small preview of generated character-->
+        <article class="tile is-child box has-background-danger">
+          <p class="title w">Title</p>
+          <p class="subtitle w">Subtitle</p> 
+          <!--adds base avatar img from the api-->
+          <img id="frame" src="https://api.dicebear.com/5.x/adventurer/svg" alt= "avatar">
+            <button></button>
+
+
+        </article>
+      </div>
+
+
+	<script src="index.js"></script>
+    <script src="js/avatar.js"></script>
+  </body>
+</html>
