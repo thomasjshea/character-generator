@@ -154,8 +154,8 @@ randomizeBtnEl.click(function () {
     //         let selectedRace = data.results[randomRace].name
     //         console.log(selectedRace)
     //     })
-})
-let characterList = document.getElementById("character-list");
+// })
+// let characterList = document.getElementById("character-list");
 // saves users generated character and adds to local storage
 function handleSaveClick() {
     console.log("saveCharacter");
@@ -182,7 +182,6 @@ function handleSaveClick() {
     console.log(raceValue)
     const newCharacter = {
         race: raceValue,
-e
         class: classValue,
         ability: abilitiesResult
     }
@@ -224,6 +223,7 @@ function retrieveSavedCharacter() {
         savedCharacter.innerText = (characterText);
         characterList.appendChild(savedCharacter);
     }
+}
 
 
 
