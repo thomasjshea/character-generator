@@ -9,6 +9,7 @@ let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
 let characterList = document.getElementById("character-list");
 
+
 // Populate Races to Dropdown Menu
 function populateRaces() {
 
@@ -64,6 +65,7 @@ generateBtnEl.click(function () {
             console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
+                ability.setAttribute("class", "ability")
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
@@ -93,8 +95,10 @@ randomizeBtnEl.click(function () {
         })
         .then(function (data) {
             console.log(data)
+            // Randomize Stats for abilities
             for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
+                ability.setAttribute("class", "ability")
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
@@ -108,37 +112,51 @@ randomizeBtnEl.click(function () {
                 );
                 console.log(fourDSix)
                 let score = document.createElement("span")
-                score.innerHTML = ": " + fourDSix
+
+                score.innerHTML = fourDSix
                 ability.appendChild(score)
             }
         })
         .then(hide)
+        })
+        
+        let randomClass = Math.floor(Math.random() * classEl.children.length)
+        let selectedClass = classEl.children[randomClass].value
+        let randClass = document.getElementById("class-select")
+        randClass.value = selectedClass
+        console.log(selectedClass)
+        let randomRace = Math.floor(Math.random() * raceEl.children.length)
+        let selectedRace = raceEl.children[randomRace].value
+        let randRace = document.getElementById("race-select")
+        randRace.value = selectedRace
+        
+        console.log(selectedRace)
     // Fetch classes to assign a random class to the generated character
-    fetch(charClasses)
-        .then(function (response) {
-            return response.json()
-        })
-        // Select a random class from the dataset
-        .then(function (data) {
-            console.log(data)
-            let randomClass = Math.floor(Math.random() * data.results.length)
-            let selectedClass = data.results[randomClass].name
-            console.log(selectedClass)
-        })
-    // Fetch races to assign a random race to the generated character
-    fetch(races)
-        .then(function (response) {
-            return response.json()
-        })
-        // Select a random race from the dataset
-        .then(function (data) {
-            console.log(data)
-            let randomRace = Math.floor(Math.random() * data.results.length)
-            let selectedRace = data.results[randomRace].name
-            console.log(selectedRace)
-        })
+    // fetch(charClasses)
+    //     .then(function (response) {
+    //         return response.json()
+    //     })
+    //     // Select a random class from the dataset
+    //     .then(function (data) {
+    //         console.log(data)
+    //         let randomClass = Math.floor(Math.random() * data.results.length)
+    //         let selectedClass = data.results[randomClass].name
+    //         console.log(selectedClass)
+    //     })
+    // // Fetch races to assign a random race to the generated character
+    // fetch(races)
+    //     .then(function (response) {
+    //         return response.json()
+    //     })
+    //     // Select a random race from the dataset
+    //     .then(function (data) {
+    //         console.log(data)
+    //         let randomRace = Math.floor(Math.random() * data.results.length)
+    //         let selectedRace = data.results[randomRace].name
+    //         console.log(selectedRace)
+    //     })
 })
-
+let characterList = document.getElementById("character-list");
 // saves users generated character and adds to local storage
 function handleSaveClick() {
     console.log("saveCharacter");
@@ -151,12 +169,25 @@ function handleSaveClick() {
     let classValue = characterClass.value;
     let characterRace = document.getElementById("race-select");
     let raceValue = characterRace.value;
+
+    let characterAbilities = document.getElementsByClassName("ability");
+    let abilitiesResult = ""
+    for(let i=0; i < characterAbilities.length; i++) {
+        let abilityStats = characterAbilities[i];
+        let abilityValue = abilityStats.innerText
+        console.log(abilityValue)
+        abilitiesResult += abilityValue + " "
+    }
+
     console.log(classValue)
     console.log(raceValue)
     const newCharacter = {
         race: raceValue,
-        class: classValue
+e
+        class: classValue,
+        ability: abilitiesResult
     }
+    console.log(newCharacter)
     characterArr.push(newCharacter);
     localStorage.setItem("character", JSON.stringify(characterArr));
 }
@@ -170,6 +201,7 @@ function getCharacters() {
 
 // clears saved characters from local storage
 function clearAll() {
+    document.getElementById("output").innerHTML = '';
     localStorage.clear()
     clearItems()
 }
@@ -187,11 +219,14 @@ function retrieveSavedCharacter() {
     console.log("retrieveSavedCharacter");
     for (i = 0; i < characterArr.length; i++) {
         let savedCharacter = document.createElement("li");
-        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race}`
+
+        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race + ','} abilities: ${characterArr[i].ability}`
+
         savedCharacter.innerText = (characterText);
         characterList.appendChild(savedCharacter);
     }
-}
+
+
 
 // Hides the input selection screen and displays results and Avatar
 function hide() {
@@ -202,3 +237,4 @@ function hide() {
     let resultsDisplay = document.getElementById("resultsDisplay")
     resultsDisplay.classList.remove("hidden")
 }
+
