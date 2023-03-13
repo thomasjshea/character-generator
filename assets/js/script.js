@@ -7,16 +7,7 @@ let classEl = document.getElementById('class-select')
 let generateBtnEl = $('#generate-btn')
 let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
-let possibleScores = [15, 14, 13, 12, 10, 8]
-let possibleBackgrounds = ['Acolyte', 'Charlatan', 'Criminal', 'Entertainer', 'Folk Hero', 'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier', 'Urchin']
-var threeDSixStr = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixDex = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixCon = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixWis = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixInt = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixCha = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSix = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-console.log(threeDSix)
+let characterList = document.getElementById("character-list");
 
 // Populate Races to Dropdown Menu
 function populateRaces() {
@@ -36,9 +27,8 @@ function populateRaces() {
                 raceEl.appendChild(raceOption)
             }
         })
-    let raceE1 = document.getElementById('race-select')
-
 }
+
 populateRaces()
 
 // Populate Classes to dropdown Menu
@@ -59,8 +49,6 @@ function populateClasses() {
                 classEl.appendChild(classOption)
             }
         })
-
-
 }
 
 
@@ -76,23 +64,25 @@ generateBtnEl.click(function () {
             console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
+                ability.setAttribute("class", "ability")
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
                 var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
                 console.log(fourDSixRoll)
                 var fourDSixRemove = (fourDSixRoll.sort()).shift()
-                console.log(fourDSixRoll)
+                console.log(fourDSixRemove)
                 var fourDSix = fourDSixRoll.reduce(
                     (accumulator, currentValue) => accumulator + currentValue,
                     initialValue
                 );
                 console.log(fourDSix)
                 let score = document.createElement("span")
-                score.innerHTML = fourDSix
+                score.innerHTML = ": " + fourDSix
                 ability.appendChild(score)
             }
         })
+        .then(hide)
 
 })
 
@@ -107,6 +97,7 @@ randomizeBtnEl.click(function () {
             // Randomize Stats for abilities
             for (let i = 0; i < data.results.length; i++) {
                 let ability = document.createElement('p')
+                ability.setAttribute("class", "ability")
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
@@ -120,15 +111,24 @@ randomizeBtnEl.click(function () {
                 );
                 console.log(fourDSix)
                 let score = document.createElement("span")
+
                 score.innerHTML = fourDSix
                 ability.appendChild(score)
             }
         })
+        .then(hide)
+        })
+        
         let randomClass = Math.floor(Math.random() * classEl.children.length)
         let selectedClass = classEl.children[randomClass].value
+        let randClass = document.getElementById("class-select")
+        randClass.value = selectedClass
         console.log(selectedClass)
         let randomRace = Math.floor(Math.random() * raceEl.children.length)
         let selectedRace = raceEl.children[randomRace].value
+        let randRace = document.getElementById("race-select")
+        randRace.value = selectedRace
+      
         console.log(selectedRace)
     // Fetch classes to assign a random class to the generated character
     // fetch(charClasses)
@@ -154,12 +154,8 @@ randomizeBtnEl.click(function () {
     //         let selectedRace = data.results[randomRace].name
     //         console.log(selectedRace)
     //     })
-})
-
-
-
-let characterList = document.getElementById("character-list");
-
+// })
+// let characterList = document.getElementById("character-list");
 // saves users generated character and adds to local storage
 function handleSaveClick() {
     console.log("saveCharacter");
@@ -172,12 +168,24 @@ function handleSaveClick() {
     let classValue = characterClass.value;
     let characterRace = document.getElementById("race-select");
     let raceValue = characterRace.value;
+
+    let characterAbilities = document.getElementsByClassName("ability");
+    let abilitiesResult = ""
+    for(let i=0; i < characterAbilities.length; i++) {
+        let abilityStats = characterAbilities[i];
+        let abilityValue = abilityStats.innerText
+        console.log(abilityValue)
+        abilitiesResult += abilityValue + " "
+    }
+
     console.log(classValue)
     console.log(raceValue)
     const newCharacter = {
         race: raceValue,
-        class: classValue
+        class: classValue,
+        ability: abilitiesResult
     }
+    console.log(newCharacter)
     characterArr.push(newCharacter);
     localStorage.setItem("character", JSON.stringify(characterArr));
 }
@@ -191,6 +199,7 @@ function getCharacters() {
 
 // clears saved characters from local storage
 function clearAll() {
+    document.getElementById("output").innerHTML = '';
     localStorage.clear()
     clearItems()
 }
@@ -208,10 +217,23 @@ function retrieveSavedCharacter() {
     console.log("retrieveSavedCharacter");
     for (i = 0; i < characterArr.length; i++) {
         let savedCharacter = document.createElement("li");
-        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race}`
+
+        const characterText = `class: ${characterArr[i].class + ','} race: ${characterArr[i].race + ','} abilities: ${characterArr[i].ability}`
+
         savedCharacter.innerText = (characterText);
         characterList.appendChild(savedCharacter);
     }
 }
 
+
+
+// Hides the input selection screen and displays results and Avatar
+function hide() {
+    let inputSelection = document.getElementById("inputSelection")
+    inputSelection.classList.add("hidden")
+    let avatarDisplay = document.getElementById("avatarDisplay")
+    avatarDisplay.classList.remove("hidden")
+    let resultsDisplay = document.getElementById("resultsDisplay")
+    resultsDisplay.classList.remove("hidden")
+}
 
