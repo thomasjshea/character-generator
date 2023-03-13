@@ -199,7 +199,6 @@ function getCharacters() {
 
 // clears saved characters from local storage
 function clearAll() {
-    document.getElementById("output").innerHTML = '';
     localStorage.clear()
     clearItems()
 }
