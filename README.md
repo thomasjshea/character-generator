@@ -1,6 +1,22 @@
-# character-generator
+# D&D 5e Random Character Generator
 
-## Major Tasks and Roles:
+## Link to Deployed Project
+
+## Screenshot of Deployed Application
+
+## Project Description
+
+## User Story
+
+## Known Issues
+
+## Future Development Notes
+
+## Contributors 
+
+UPDATE THIS 
+UPDATE THIS
+UPDATE THIS
 
 John - Style and Layout: This person is in charge of using our chosen framework (currently Bulma) to create a clean, responsive UI. Additionally, they will work with other role members to ensure their functional pieces of code fit correctly onto the webpage. 
 
