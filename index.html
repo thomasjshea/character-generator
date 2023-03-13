@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body>
-  <div class="content container has-text-centered">
-    <h1 class="title is-2 has-text-warning">D&D 5e Character Generator</h1>
-    <h2 class="subtitle">A tool to create a truly random PC </h2>
+  <body class="content container has-text-centered">
 
-    <div class="tile is-ancestor"> <!-- area for input options and where generated character appears-->
+    <header>
+      <h1 class="title is-2 has-text-warning">D&D 5e Character Generator</h1>
+      <h2 class="subtitle">A tool to create a truly random PC </h2>
+    </header>
+
+    <main class="tile is-ancestor"> <!-- area for input options and where generated character appears-->
       <div class="tile is-parent" id="inputSelection">
         <article class="tile is-child box has-background-info">
 
@@ -40,33 +42,33 @@
         </article>
       </div>
 
-      <div class="tile is-parent hidden" id="resultsDisplay"> <!-- Area to display character generation results-->
-        <article class="tile is-child box has-background-info">
-          <div id="output">
-          </div>    
-        </article>
-      </div>
+      <section class="tile is-parent hidden" id="resultsDisplay"> <!-- Area to display character generation results-->
+        <div class="tile is-child box has-background-info">
+          <div id="output"></div>    
+        </div>
+      </section>
 
-        <div class="tile is-parent is-4 hidden" id="avatarDisplay"> <!-- Area to display avatar -->
-            <article class="tile is-child box has-background-danger">
+        <article class="tile is-parent is-4 hidden" id="avatarDisplay"> <!-- Area to display avatar -->
+            <div class="tile is-child box has-background-danger">
               <p class="title w">Avatar</p>
               <p class="subtitle w">Subtitle</p> 
               <p>Avatar should display somewhere here</p>
               <p>Then maybe a "click here for a more personalized avatar"</p> 
-            </article>
-          </div>
-        </div> 
+            </div>
+          </article>
+    </main> 
+  
+
+  <footer class="has-text-centered">  <!-- Area to display buttons to save/load characters-->
+    <button onclick="handleSaveClick()" class="button is-warning is-medium is-outlined">Save Your Character</button>
+    <button onclick="retrieveSavedCharacter()" class="button is-warning is-medium is-outlined">Load Your Character</button>
+    <button onclick="clearAll()" class="button is-warning is-medium is-outlined">Clear All</button>
+    <ol id="character-list"></ol>
+  </footer>    
       
-        <footer class="has-text-centered">  <!-- Area to display buttons to save/load characters-->
-          <button onclick="handleSaveClick()" class="button is-warning is-medium is-outlined">Save Your Character</button>
-          <button onclick="retrieveSavedCharacter()" class="button is-warning is-medium is-outlined">Load Your Character</button>
-          <button onclick="clearAll()" class="button is-warning is-medium is-outlined">Clear All</button>
-        <ol id="character-list"></ol>
-        
-      
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="./assets/js/script.js" > </script>
-      <script src="./assets/js/dice.js" > </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="./assets/js/script.js" > </script>
+  <script src="./assets/js/dice.js" > </script>
 
   </body>
 </html>

@@ -7,6 +7,7 @@ let classEl = document.getElementById('class-select')
 let generateBtnEl = $('#generate-btn')
 let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
+let characterList = document.getElementById("character-list");
 
 // Populate Races to Dropdown Menu
 function populateRaces() {
@@ -26,7 +27,6 @@ function populateRaces() {
                 raceEl.appendChild(raceOption)
             }
         })
-    let raceE1 = document.getElementById('race-select')
 }
 
 populateRaces()
@@ -138,10 +138,6 @@ randomizeBtnEl.click(function () {
             console.log(selectedRace)
         })
 })
-
-
-
-let characterList = document.getElementById("character-list");
 
 // saves users generated character and adds to local storage
 function handleSaveClick() {
