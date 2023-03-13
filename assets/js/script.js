@@ -117,6 +117,9 @@ randomizeBtnEl.click(function () {
                 ability.appendChild(score)
             }
         })
+        .then(hide)
+        })
+        
         let randomClass = Math.floor(Math.random() * classEl.children.length)
         let selectedClass = classEl.children[randomClass].value
         let randClass = document.getElementById("class-select")
