@@ -116,46 +116,36 @@ randomizeBtnEl.click(function () {
                 ability.appendChild(score)
             }
         })
-        .then(hide)
-        })
-        
-        let randomClass = Math.floor(Math.random() * classEl.children.length)
-        let selectedClass = classEl.children[randomClass].value
-        let randClass = document.getElementById("class-select")
-        randClass.value = selectedClass
-        console.log(selectedClass)
-        let randomRace = Math.floor(Math.random() * raceEl.children.length)
-        let selectedRace = raceEl.children[randomRace].value
-        let randRace = document.getElementById("race-select")
-        randRace.value = selectedRace
-      
-        console.log(selectedRace)
     // Fetch classes to assign a random class to the generated character
-    // fetch(charClasses)
-    //     .then(function (response) {
-    //         return response.json()
-    //     })
-    //     // Select a random class from the dataset
-    //     .then(function (data) {
-    //         console.log(data)
-    //         let randomClass = Math.floor(Math.random() * data.results.length)
-    //         let selectedClass = data.results[randomClass].name
-    //         console.log(selectedClass)
-    //     })
-    // // Fetch races to assign a random race to the generated character
-    // fetch(races)
-    //     .then(function (response) {
-    //         return response.json()
-    //     })
-    //     // Select a random race from the dataset
-    //     .then(function (data) {
-    //         console.log(data)
-    //         let randomRace = Math.floor(Math.random() * data.results.length)
-    //         let selectedRace = data.results[randomRace].name
-    //         console.log(selectedRace)
-    //     })
-// })
-// let characterList = document.getElementById("character-list");
+    fetch(charClasses)
+        .then(function (response) {
+            return response.json()
+        })
+        // Select a random class from the dataset
+        .then(function (data) {
+            console.log(data)
+            let randomClass = Math.floor(Math.random() * data.results.length)
+            let selectedClass = data.results[randomClass].index
+            let randClass = document.getElementById("class-select")
+            randClass.value = selectedClass
+            console.log(selectedClass)
+        })
+    // Fetch races to assign a random race to the generated character
+    fetch(races)
+        .then(function (response) {
+            return response.json()
+        })
+        // Select a random race from the dataset
+        .then(function (data) {
+            console.log(data)
+            let randomRace = Math.floor(Math.random() * data.results.length)
+            let selectedRace = data.results[randomRace].index
+            let randRace = document.getElementById("race-select")
+            randRace.value = selectedRace
+            console.log(selectedRace)
+        })
+        .then(hide)
+})
 // saves users generated character and adds to local storage
 function handleSaveClick() {
     console.log("saveCharacter");
@@ -171,7 +161,7 @@ function handleSaveClick() {
 
     let characterAbilities = document.getElementsByClassName("ability");
     let abilitiesResult = ""
-    for(let i=0; i < characterAbilities.length; i++) {
+    for (let i = 0; i < characterAbilities.length; i++) {
         let abilityStats = characterAbilities[i];
         let abilityValue = abilityStats.innerText
         console.log(abilityValue)
