@@ -9,7 +9,6 @@ let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
 let characterList = document.getElementById("character-list");
 
-
 // Populate Races to Dropdown Menu
 function populateRaces() {
 
@@ -129,7 +128,7 @@ randomizeBtnEl.click(function () {
         let selectedRace = raceEl.children[randomRace].value
         let randRace = document.getElementById("race-select")
         randRace.value = selectedRace
-        
+      
         console.log(selectedRace)
     // Fetch classes to assign a random class to the generated character
     // fetch(charClasses)
