@@ -7,15 +7,7 @@ let classEl = document.getElementById('class-select')
 let generateBtnEl = $('#generate-btn')
 let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
-let possibleScores = [15, 14, 13, 12, 10, 8]
-var threeDSixStr = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixDex = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixCon = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixWis = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixInt = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSixCha = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-var threeDSix = (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1) + (Math.floor(Math.random() * 6) + 1)
-console.log(threeDSix)
+let characterList = document.getElementById("character-list");
 
 // Populate Races to Dropdown Menu
 function populateRaces() {
@@ -35,9 +27,8 @@ function populateRaces() {
                 raceEl.appendChild(raceOption)
             }
         })
-    let raceE1 = document.getElementById('race-select')
-
 }
+
 populateRaces()
 
 // Populate Classes to dropdown Menu
@@ -58,8 +49,6 @@ function populateClasses() {
                 classEl.appendChild(classOption)
             }
         })
-
-
 }
 
 
@@ -81,17 +70,18 @@ generateBtnEl.click(function () {
                 var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
                 console.log(fourDSixRoll)
                 var fourDSixRemove = (fourDSixRoll.sort()).shift()
-                console.log(fourDSixRoll)
+                console.log(fourDSixRemove)
                 var fourDSix = fourDSixRoll.reduce(
                     (accumulator, currentValue) => accumulator + currentValue,
                     initialValue
                 );
                 console.log(fourDSix)
                 let score = document.createElement("span")
-                score.innerHTML = fourDSix
+                score.innerHTML = ": " + fourDSix
                 ability.appendChild(score)
             }
         })
+        .then(hide)
 
 })
 
@@ -118,10 +108,11 @@ randomizeBtnEl.click(function () {
                 );
                 console.log(fourDSix)
                 let score = document.createElement("span")
-                score.innerHTML = fourDSix
+                score.innerHTML = ": " + fourDSix
                 ability.appendChild(score)
             }
         })
+        .then(hide)
     // Fetch classes to assign a random class to the generated character
     fetch(charClasses)
         .then(function (response) {
@@ -147,10 +138,6 @@ randomizeBtnEl.click(function () {
             console.log(selectedRace)
         })
 })
-
-
-
-let characterList = document.getElementById("character-list");
 
 // saves users generated character and adds to local storage
 function handleSaveClick() {
@@ -206,4 +193,12 @@ function retrieveSavedCharacter() {
     }
 }
 
-
+// Hides the input selection screen and displays results and Avatar
+function hide() {
+    let inputSelection = document.getElementById("inputSelection")
+    inputSelection.classList.add("hidden")
+    let avatarDisplay = document.getElementById("avatarDisplay")
+    avatarDisplay.classList.remove("hidden")
+    let resultsDisplay = document.getElementById("resultsDisplay")
+    resultsDisplay.classList.remove("hidden")
+}

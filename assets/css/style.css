@@ -22,3 +22,7 @@
 .dropdown-option {
     color:black
 }
+
+.hidden {
+    display: none!important;
+}
