@@ -68,7 +68,7 @@ generateBtnEl.click(function () {
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
-                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
+                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random()) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
                 console.log(fourDSixRoll)
                 var fourDSixRemove = (fourDSixRoll.sort()).shift()
                 console.log(fourDSixRemove)
@@ -134,6 +134,7 @@ randomizeBtnEl.click(function () {
         .then(function (data) {
             console.log(data)
             let randomClass = Math.floor(Math.random() * data.results.length)
+
             let selectedClass = data.results[randomClass + 1].index
             let randClass = document.getElementById("class-select")
             randClass.value = selectedClass
@@ -142,6 +143,7 @@ randomizeBtnEl.click(function () {
             newClass.innerText = selectedClass.toUpperCase()
             console.log(newClass)
             document.getElementById("character-class").style.display="block"
+
         })
     // Fetch races to assign a random race to the generated character
     fetch(races)
@@ -152,6 +154,7 @@ randomizeBtnEl.click(function () {
         .then(function (data) {
             console.log(data)
             let randomRace = Math.floor(Math.random() * data.results.length)
+
             let selectedRace = data.results[randomRace + 1].index
             let randRace = document.getElementById("race-select")
             randRace.value = selectedRace
@@ -160,6 +163,7 @@ randomizeBtnEl.click(function () {
             newRace.innerText = selectedRace.toUpperCase()
             console.log(newRace)
             document.getElementById("character-race").style.display="block"
+
         })
         .then(hide)
 })
@@ -206,7 +210,6 @@ function getCharacters() {
 
 // clears saved characters from local storage
 function clearAll() {
-    document.getElementById("output").innerHTML = '';
     localStorage.clear()
     clearItems()
 }
