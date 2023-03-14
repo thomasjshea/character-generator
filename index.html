@@ -53,7 +53,7 @@
               <p class="title w">Avatar</p>
               <p class="subtitle w">Subtitle</p> 
               <!--adds base avatar img from the api-->
-              <img id="frame" src="https://api.dicebear.com/5.x/adventurer/svg" alt= "avatar">
+              <img id="frame" src="https://api.dicebear.com/5.x/adventurer/svg?base=default" alt= "avatar">
               <button class="button" id="gen" >Randomize</button>
               <a class="button" href="./assets/avatar.html">Advanced</a>
             </div>
@@ -68,8 +68,7 @@
     <button onclick="clearAll()" class="button is-warning is-medium is-outlined">Clear All</button>
     <ol id="character-list"></ol>
   </footer>    
-      
-
+  <script src="./assets/js/avatar.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="./assets/js/script.js" > </script>
   <script src="./assets/js/dice.js" > </script>
