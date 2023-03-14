@@ -61,7 +61,10 @@ generateBtnEl.click(function () {
     let classValue = classEl.value
     let raceValue = raceEl.value
     if(classValue === "" || raceValue === ""){
-        errorModalEl.attr('class', 'is-active')
+        errorModalEl.addClass('is-active')
+        modalCloseEl.click(function(){
+            errorModalEl.removeClass('is-active')
+        })
     }
     else{
     fetch(abilityScores)
