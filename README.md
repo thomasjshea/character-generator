@@ -2,7 +2,7 @@
 
 ## Link to Deployed Project
 
-TBA
+https://thomasjshea.github.io/character-generator/
 
 ## Screenshot of Deployed Application
 
