@@ -252,14 +252,7 @@ function handleSaveClick() {
       if (!handleSaveClick) {
         document.getElementById("load").disabled = true
       }
-      let classValue = classEl.value;
-      let raceValue = raceEl.value;
-      if (classValue === "" || raceValue === "") {
-        errorModalEl.addClass("is-active");
-        modalCloseEl.click(function () {
-          errorModalEl.removeClass("is-active");
-        });
-      } else {
+      
       const characterArr = getCharacters();
       console.log(characterArr);
       console.log("retrieveSavedCharacter");
@@ -280,7 +273,7 @@ function handleSaveClick() {
         characterList.appendChild(savedCharacter);
       }
     }
-}
+
       
     function goBack() {
       location.reload();
@@ -294,6 +287,10 @@ function handleSaveClick() {
       avatarDisplay.classList.remove("hidden");
       let resultsDisplay = document.getElementById("resultsDisplay");
       resultsDisplay.classList.remove("hidden");
+      let goBackShow = document.getElementById("goBackShow")
+      goBackShow.classList.remove("hidden")
+      let saveShow = document.getElementById("saveShow")
+      saveShow.classList.remove("hidden")
     }
 
 // randomizes the avatar selected when characted is generated
