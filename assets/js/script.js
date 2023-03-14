@@ -10,6 +10,8 @@ let outputEl = document.getElementById('output')
 let characterList = document.getElementById("character-list");
 let errorModalEl = $('#error-modal')
 let modalCloseEl = $('#modal-close')
+var avatarFrame = $('#frame')
+
 
 // Populate Races to Dropdown Menu
 function populateRaces() {
@@ -60,51 +62,51 @@ populateClasses()
 generateBtnEl.click(function () {
     let classValue = classEl.value
     let raceValue = raceEl.value
-    if(classValue === "" || raceValue === ""){
+    if (classValue === "" || raceValue === "") {
         errorModalEl.addClass('is-active')
-        modalCloseEl.click(function(){
+        modalCloseEl.click(function () {
             errorModalEl.removeClass('is-active')
         })
     }
-    else{
-    fetch(abilityScores)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function (data) {
-            console.log(data)
-            for (let i = 0; i < data.results.length; i++) {
-                let ability = document.createElement('p')
-                ability.setAttribute("class", "ability")
-                ability.innerHTML = data.results[i].name
-                outputEl.appendChild(ability)
-                const initialValue = 0
-                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
-                console.log(fourDSixRoll)
-                var fourDSixRemove = (fourDSixRoll.sort()).shift()
-                console.log(fourDSixRemove)
-                var fourDSix = fourDSixRoll.reduce(
-                    (accumulator, currentValue) => accumulator + currentValue,
-                    initialValue
-                );
-                console.log(fourDSix)
-                let score = document.createElement("span")
-                score.innerHTML = ": " + fourDSix
-                ability.appendChild(score)
-            }
-            let genClass = document.getElementById("class-select")
-            let newClass = document.getElementById("character-class")
-            document.getElementById("character-class").style.display="block"
-            
-            newClass.innerText = genClass.value.toUpperCase()
-            let genRace = document.getElementById("race-select")
-            let newRace = document.getElementById("character-race");
-            newRace.innerText = genRace.value.toUpperCase()
-            document.getElementById("character-race").style.display="block"
-        })
-        .then(hide)
+    else {
+        fetch(abilityScores)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (data) {
+                console.log(data)
+                for (let i = 0; i < data.results.length; i++) {
+                    let ability = document.createElement('p')
+                    ability.setAttribute("class", "ability")
+                    ability.innerHTML = data.results[i].name
+                    outputEl.appendChild(ability)
+                    const initialValue = 0
+                    var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
+                    console.log(fourDSixRoll)
+                    var fourDSixRemove = (fourDSixRoll.sort()).shift()
+                    console.log(fourDSixRemove)
+                    var fourDSix = fourDSixRoll.reduce(
+                        (accumulator, currentValue) => accumulator + currentValue,
+                        initialValue
+                    );
+                    console.log(fourDSix)
+                    let score = document.createElement("span")
+                    score.innerHTML = ": " + fourDSix
+                    ability.appendChild(score)
+                }
+                let genClass = document.getElementById("class-select")
+                let newClass = document.getElementById("character-class")
+                document.getElementById("character-class").style.display = "block"
 
-}
+                newClass.innerText = genClass.value.toUpperCase()
+                let genRace = document.getElementById("race-select")
+                let newRace = document.getElementById("character-race");
+                newRace.innerText = genRace.value.toUpperCase()
+                document.getElementById("character-race").style.display = "block"
+            })
+            .then(hide)
+
+    }
 })
 // Added event listener to randomize button
 randomizeBtnEl.click(function () {
@@ -153,7 +155,7 @@ randomizeBtnEl.click(function () {
             let newClass = document.getElementById("character-class")
             newClass.innerText = selectedClass.toUpperCase()
             console.log(newClass)
-            document.getElementById("character-class").style.display="block"
+            document.getElementById("character-class").style.display = "block"
 
         })
     // Fetch races to assign a random race to the generated character
@@ -173,7 +175,7 @@ randomizeBtnEl.click(function () {
             let newRace = document.getElementById("character-race");
             newRace.innerText = selectedRace.toUpperCase()
             console.log(newRace)
-            document.getElementById("character-race").style.display="block"
+            document.getElementById("character-race").style.display = "block"
 
         })
         .then(hide)
@@ -259,3 +261,12 @@ function hide() {
     let resultsDisplay = document.getElementById("resultsDisplay")
     resultsDisplay.classList.remove("hidden")
 }
+
+// randomizes the avatar selected when characted is generated
+function randomAvatar() {
+    var avatarID = Math.random()
+    var avatarURL = `https://avatars.dicebear.com/api/adventurer/${avatarID}.svg`
+    avatarFrame.attr('src', avatarURL)
+}
+
+randomAvatar()
