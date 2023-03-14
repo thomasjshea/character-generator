@@ -176,8 +176,6 @@ function handleSaveClick() {
     let characterRace = document.getElementById("race-select");
     let raceValue = characterRace.value;
 
-    
-
     let characterAbilities = document.getElementsByClassName("ability");
     let abilitiesResult = ""
     for (let i = 0; i < characterAbilities.length; i++) {
@@ -208,6 +206,7 @@ function getCharacters() {
 
 // clears saved characters from local storage
 function clearAll() {
+    document.getElementById("output").innerHTML = '';
     localStorage.clear()
     clearItems()
 }
@@ -232,6 +231,8 @@ function retrieveSavedCharacter() {
         characterList.appendChild(savedCharacter);
     }
 }
+
+
 
 // Hides the input selection screen and displays results and Avatar
 function hide() {

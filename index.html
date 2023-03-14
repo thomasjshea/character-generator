@@ -37,6 +37,7 @@
           <select name="race" id="race-select" class="dropdown">
            <option class="dropdown-option" value="">--Select a Race--</option>
           </select>
+          <p></p>
           <button class="button" id="generate-btn">Generate</button>
         </article>
       </div>
@@ -45,7 +46,7 @@
         <div class="tile is-child box has-background-info">
           <p id="character-race" style="display:none"></p>
           <p id="character-class" style="display:none"></p> 
-          <div id="output"></div>   
+          <div id="output"></div>    
         </div>
       </section>
 
@@ -53,12 +54,15 @@
             <div class="tile is-child box has-background-danger">
               <p class="title w">Avatar</p>
               <p class="subtitle w">Subtitle</p> 
-              <p>Avatar should display somewhere here</p>
-              <p>Then maybe a "click here for a more personalized avatar"</p> 
+              <!--adds base avatar img from the api-->
+              <img id="frame" src="https://api.dicebear.com/5.x/adventurer/svg" alt= "avatar">
+              <button class="button" id="gen" >Randomize</button>
+              <a class="button" href="./assets/avatar.html">Advanced</a>
             </div>
           </article>
     </main> 
   
+
 
   <footer class="has-text-centered">  <!-- Area to display buttons to save/load characters-->
     <button onclick="handleSaveClick()" class="button is-warning is-medium is-outlined">Save Your Character</button>
@@ -67,6 +71,7 @@
     <ol id="character-list"></ol>
   </footer>    
       
+
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="./assets/js/script.js" > </script>
   <script src="./assets/js/dice.js" > </script>
