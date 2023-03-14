@@ -13,14 +13,14 @@
 
     <header>
       <h1 class="title is-2 has-text-warning">D&D 5e Character Generator</h1>
-      <h2 class="subtitle">A tool to create a truly random PC </h2>
+      <h2 class="subtitle has-text-danger">A tool to create a truly random PC </h2>
     </header>
 
     <main class="tile is-ancestor"> <!-- area for input options and where generated character appears-->
       <div class="tile is-parent" id="inputSelection">
         <article class="tile is-child box has-background-info">
           
-          <p class="is-size-5">For a truly random character, hit the "Randomize" button. Let the dice decide!</p>
+          <p class="is-size-5">For a truly random character, hit the "Randomize" button. Let us pick your race, class, and roll those 4d6kh3 dice for you!</p>
           <button class="button" id="randomize-btn">Randomize</button>
           <p></p>
 
@@ -63,22 +63,21 @@
 
         <article class="tile is-parent is-4 hidden" id="avatarDisplay"> <!-- Area to display avatar -->
             <div class="tile is-child box has-background-danger">
-              <p class="title w">Avatar</p>
-              <p class="subtitle w">Subtitle</p> 
+              <p class="title w">Random Avatar</p>
+              <p class="subtitle w">Do you like it? We made it just for you!</p> 
               <!--adds base avatar img from the api-->
               <img id="frame" src="https://api.dicebear.com/5.x/adventurer/svg" alt= "avatar">
               <button onclick="randomAvatar()" class="button" id="gen" >Randomize</button>
-              <a class="button" href="./assets/avatar.html">Advanced</a>
             </div>
           </article>
     </main> 
   
 
   <footer class="has-text-centered">  <!-- Area to display buttons to save/load characters-->
-    <button onclick="handleSaveClick()" class="button is-warning is-medium is-outlined">Save Your Character</button>
+    <button onclick="handleSaveClick()" id="saveShow" class="button is-warning is-medium is-outlined hidden">Save Your Character</button>
     <button onclick="retrieveSavedCharacter()" class="button is-warning is-medium is-outlined">Load Your Character</button>
     <button onclick="clearAll()" class="button is-warning is-medium is-outlined">Clear All</button>
-    <button onclick="goBack()" class="button is-warning is-medium is-outlined">New Character</button>
+    <button onclick="goBack()" id="goBackShow" class="button is-warning is-medium is-outlined hidden">New Character</button>
     <ol id="character-list"></ol>
   </footer>    
 
