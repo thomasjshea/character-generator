@@ -8,6 +8,9 @@ let generateBtnEl = $('#generate-btn')
 let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
 let characterList = document.getElementById("character-list");
+let errorModalEl = $('#error-modal')
+let modalCloseEl = $('#modal-close')
+
 // Populate Races to Dropdown Menu
 function populateRaces() {
 
@@ -55,6 +58,12 @@ populateClasses()
 
 // add event listener to generate button
 generateBtnEl.click(function () {
+    let classValue = classEl.value
+    let raceValue = raceEl.value
+    if(classValue === "" || raceValue === ""){
+        errorModalEl.attr('class', 'is-active')
+    }
+    else{
     fetch(abilityScores)
         .then(function (response) {
             return response.json()
@@ -67,7 +76,7 @@ generateBtnEl.click(function () {
                 ability.innerHTML = data.results[i].name
                 outputEl.appendChild(ability)
                 const initialValue = 0
-                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random()) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
+                var fourDSixRoll = [(Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1), (Math.floor(Math.random() * 6) + 1)]
                 console.log(fourDSixRoll)
                 var fourDSixRemove = (fourDSixRoll.sort()).shift()
                 console.log(fourDSixRemove)
@@ -92,8 +101,8 @@ generateBtnEl.click(function () {
         })
         .then(hide)
 
+}
 })
-
 // Added event listener to randomize button
 randomizeBtnEl.click(function () {
     fetch(abilityScores)
