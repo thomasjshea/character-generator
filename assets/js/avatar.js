@@ -5,17 +5,18 @@
 
 
 
-//avatar api randomizer function//
-function generate() {
-    let id = Math.random();
-    let url = `https://avatars.dicebear.com/api/adventurer/${id}.svg`
-    aframe.src = url;
-}
+// //avatar api randomizer function//
+// function generate() {
+//     let id = Math.random();
+//     let url = `https://avatars.dicebear.com/api/adventurer/${id}.svg`
+//     aframe.src = url;
+// }
 
-gen.addEventListener('click', function(e) {
-    e.preventDefault();
-    generate();
-});
+// gen.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     generate();
+// });
 
 
-//advanced section//
+
+// //advanced section//

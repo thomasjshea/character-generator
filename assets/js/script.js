@@ -222,39 +222,50 @@ function handleSaveClick() {
       const newCharacter = {
         race: raceValue,
         class: classValue,
-        ability: abilitiesResult
+        ability: abilitiesResult,
+      };
+      console.log(newCharacter);
+      characterArr.push(newCharacter);
+      localStorage.setItem("character", JSON.stringify(characterArr));
     }
-    console.log(newCharacter)
-    characterArr.push(newCharacter);
-    localStorage.setItem("character", JSON.stringify(characterArr));
-}
-
-// gets characters from local storage
-function getCharacters() {
-    const characterStorage = localStorage.getItem("character");
-    const characterArr = JSON.parse(characterStorage);
-    return characterArr || []
-}
-
-// clears saved characters from local storage
-function clearAll() {
-    document.getElementById("output").innerHTML = '';
-    localStorage.clear()
-    clearItems()
-}
-
-// clears loaded character list
-function clearItems() {
-    characterList.innerHTML = '';
-}
-
-// loads saved character and their features for user
-function retrieveSavedCharacter() {
-    clearItems()
-    const characterArr = getCharacters()
-    console.log(characterArr);
-    console.log("retrieveSavedCharacter");
-    for (i = 0; i < characterArr.length; i++) {
+    }
+    // gets characters from local storage
+    function getCharacters() {
+      const characterStorage = localStorage.getItem("character");
+      const characterArr = JSON.parse(characterStorage);
+      return characterArr || [];
+    }
+    // clears saved characters from local storage
+    function clearAll() {
+      localStorage.clear();
+      clearItems();
+    }
+    
+    // clears loaded character list
+    function clearItems() {
+      characterList.innerHTML = "";
+    }
+    
+    // loads saved character and their features for user
+    function retrieveSavedCharacter() {
+      clearItems()
+      if (!handleSaveClick) {
+        document.getElementById("load").disabled = true
+      }
+      let classValue = classEl.value;
+      let raceValue = raceEl.value;
+      if (classValue === "" || raceValue === "") {
+        errorModalEl.addClass("is-active");
+        modalCloseEl.click(function () {
+          errorModalEl.removeClass("is-active");
+        });
+      } else {
+      const characterArr = getCharacters();
+      console.log(characterArr);
+      console.log("retrieveSavedCharacter");
+    
+      for (i = 0; i < 1; i++) {
+        
         let savedCharacter = document.createElement("li");
         const characterText = `class: ${characterArr[i].class + ","} race: ${
           characterArr[i].race + ","
@@ -267,17 +278,29 @@ function retrieveSavedCharacter() {
     
         savedCharacter.innerText = characterText;
         characterList.appendChild(savedCharacter);
+      }
     }
 }
+      
+    function goBack() {
+      location.reload();
+    }
+    
+    // Hides the input selection screen and displays results and Avatar
+    function hide() {
+      let inputSelection = document.getElementById("inputSelection");
+      inputSelection.classList.add("hidden");
+      let avatarDisplay = document.getElementById("avatarDisplay");
+      avatarDisplay.classList.remove("hidden");
+      let resultsDisplay = document.getElementById("resultsDisplay");
+      resultsDisplay.classList.remove("hidden");
+    }
 
-
-
-// Hides the input selection screen and displays results and Avatar
-function hide() {
-    let inputSelection = document.getElementById("inputSelection")
-    inputSelection.classList.add("hidden")
-    let avatarDisplay = document.getElementById("avatarDisplay")
-    avatarDisplay.classList.remove("hidden")
-    let resultsDisplay = document.getElementById("resultsDisplay")
-    resultsDisplay.classList.remove("hidden")
+// randomizes the avatar selected when characted is generated
+function randomAvatar() {
+    var avatarID = Math.random()
+    var avatarURL = `https://avatars.dicebear.com/api/adventurer/${avatarID}.svg`
+    avatarFrame.attr('src', avatarURL)
 }
+
+randomAvatar()
