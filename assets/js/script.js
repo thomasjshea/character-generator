@@ -8,7 +8,6 @@ let generateBtnEl = $('#generate-btn')
 let randomizeBtnEl = $('#randomize-btn')
 let outputEl = document.getElementById('output')
 let characterList = document.getElementById("character-list");
-
 // Populate Races to Dropdown Menu
 function populateRaces() {
 
@@ -235,7 +234,9 @@ function retrieveSavedCharacter() {
     }
 }
 
-
+function goBack() {
+    location.reload();
+}
 
 // Hides the input selection screen and displays results and Avatar
 function hide() {
