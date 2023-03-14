@@ -6,9 +6,9 @@ https://thomasjshea.github.io/character-generator/
 
 ## Screenshot of Deployed Application
 
-![Screenshot of Input Page](assets\images\demoscreenshot1.PNG)
+![Screenshot of Input Page](assets/images/demoscreenshot1.PNG)
 
-![Screenshot of Results Page](assets\images\demoscreenshot2.PNG)
+![Screenshot of Results Page](assets/images/demoscreenshot2.PNG)
 
 ## Project Description
 
