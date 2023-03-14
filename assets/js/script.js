@@ -85,10 +85,10 @@ generateBtnEl.click(function () {
             let newClass = document.getElementById("character-class")
             document.getElementById("character-class").style.display="block"
             
-            newClass.innerText = genClass.value
+            newClass.innerText = genClass.value.toUpperCase()
             let genRace = document.getElementById("race-select")
             let newRace = document.getElementById("character-race");
-            newRace.innerText = genRace.value
+            newRace.innerText = genRace.value.toUpperCase()
             document.getElementById("character-race").style.display="block"
         })
         .then(hide)
@@ -139,7 +139,7 @@ randomizeBtnEl.click(function () {
             randClass.value = selectedClass
             console.log(selectedClass)
             let newClass = document.getElementById("character-class")
-            newClass.innerText = selectedClass
+            newClass.innerText = selectedClass.toUpperCase()
             console.log(newClass)
             document.getElementById("character-class").style.display="block"
         })
@@ -157,7 +157,7 @@ randomizeBtnEl.click(function () {
             randRace.value = selectedRace
             console.log(selectedRace)
             let newRace = document.getElementById("character-race");
-            newRace.innerText = selectedRace
+            newRace.innerText = selectedRace.toUpperCase()
             console.log(newRace)
             document.getElementById("character-race").style.display="block"
         })
